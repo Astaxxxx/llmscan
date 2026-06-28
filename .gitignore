@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+# secrets / keys
+.env
+.env.*
+*.key
+# generated scan reports (keep docs/ samples)
+/llmscan-report.md
+/report.md
+/report.html
+*-report.md

@@ -1,0 +1,53 @@
+name: "llmscan"
+description: "Red-team your LLM app for prompt injection & system-prompt leaks (OWASP LLM Top 10). Fails the build if a vulnerability is found."
+branding:
+  icon: "shield"
+  color: "purple"
+
+inputs:
+  provider:
+    description: "ollama | openai | anthropic"
+    required: false
+    default: "openai"
+  model:
+    description: "Target model id (e.g. gpt-4o-mini, claude-haiku-4-5)"
+    required: true
+  system-prompt:
+    description: "The system prompt your app uses (must contain {{CANARY}} where your secret goes, or use --system-prompt-file)"
+    required: false
+    default: ""
+  probes:
+    description: "Path to a custom probes.yaml (optional)"
+    required: false
+    default: ""
+  judge:
+    description: "Enable LLM-as-judge for nuanced probes (true/false)"
+    required: false
+    default: "false"
+  html:
+    description: "Path to also write an HTML report (optional)"
+    required: false
+    default: ""
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - name: Install llmscan
+      shell: bash
+      run: pip install -r "${{ github.action_path }}/requirements.txt"
+    - name: Run scan
+      shell: bash
+      run: |
+        ARGS=( -p "${{ inputs.provider }}" -m "${{ inputs.model }}" )
+        [ -n "${{ inputs.system-prompt }}" ] && ARGS+=( -s "${{ inputs.system-prompt }}" )
+        [ -n "${{ inputs.probes }}" ] && ARGS+=( --probes "${{ inputs.probes }}" )
+        [ -n "${{ inputs.html }}" ] && ARGS+=( --html "${{ inputs.html }}" )
+        [ "${{ inputs.judge }}" = "true" ] && ARGS+=( --judge )
+        python -m llmscan scan "${ARGS[@]}"
+      env:
+        OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
+        ANTHROPIC_API_KEY: ${{ env.ANTHROPIC_API_KEY }}
