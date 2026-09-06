@@ -67,7 +67,7 @@ def scan(
 
     probe_list = cfg.get("probes", [])
     extras = "  [judge on]" if judge else ""
-    console.print(f"[bold]llmscan[/] → {provider}:{model}  ({len(probe_list)} probes){extras}\n")
+    console.print(f"[bold]llmscan[/] -> {provider}:{model}  ({len(probe_list)} probes){extras}\n")
 
     results: list[dict] = []
     for p in probe_list:
@@ -88,7 +88,7 @@ def scan(
     colour = "red" if vulns else "green"
     console.print(
         f"\n[bold {colour}]{vulns}/{len(results)} probes found a vulnerability[/]  "
-        f"·  risk grade [bold]{grade}[/]  ·  report → {out}"
+        f"|  risk grade [bold]{grade}[/]  |  report -> {out}"
         + (f" + {html}" if html else "")
     )
     raise typer.Exit(code=1 if vulns else 0)  # non-zero so it can gate CI
