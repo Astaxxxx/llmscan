@@ -8,7 +8,7 @@ commit `report.html`) so links have something to show.
 
 ## 0. Pre-flight (5 min)
 ```bash
-cd C:\Users\malus\Documents\llmscan
+cd "C:\Users\malus\Documents\Claude Projects\llmscan"
 # generate a demo artefact people can see (free, local):
 ollama pull llama3.1
 python -m llmscan scan -p ollama -m llama3.1 --html docs/sample-report.html
@@ -49,7 +49,7 @@ Then make sure the repo is **public**, the description is set, and topics are ad
 > but felt heavy; I wanted something focused, OWASP-mapped, with a report you can hand to a
 > stakeholder. Feedback very welcome — especially on probes I'm missing.
 >
-> Repo: <PASTE REPO URL>
+> Repo: https://github.com/Astaxxxx/llmscan
 
 *(Tip: post 8–10am ET on a weekday. Reply to every comment in the first 2 hours.)*
 
@@ -69,7 +69,7 @@ Then make sure the repo is **public**, the description is set, and topics are ad
 > BYO-key, runs free on local Ollama, MIT-licensed, has a GitHub Action for CI gating.
 >
 > Defensive use only (test systems you own/are authorised to test). Would love probe ideas
-> and PRs. Repo: <PASTE REPO URL>
+> and PRs. Repo: https://github.com/Astaxxxx/llmscan
 
 *(r/netsec has a strict "no blogspam" culture — a tool repo with a clear README is fine. Read the rules; some subs require a self-post with detail, not just a link.)*
 
@@ -86,7 +86,7 @@ Then make sure the repo is **public**, the description is set, and topics are ad
 > It sits right on the AI × security intersection — which is exactly where I want to work:
 > cybersecurity background, now building with LLMs.
 >
-> It's MIT-licensed and live here 👉 <PASTE REPO URL>
+> It's MIT-licensed and live here 👉 https://github.com/Astaxxxx/llmscan
 >
 > Probe ideas and PRs welcome. What's the worst prompt-injection you've seen in the wild?
 >
@@ -101,7 +101,7 @@ Then make sure the repo is **public**, the description is set, and topics are ad
 > the OWASP LLM Top 10. catches base64/ROT13-encoded data exfil. free on local Ollama, MIT,
 > drops into CI.
 >
-> <PASTE REPO URL>
+> https://github.com/Astaxxxx/llmscan
 
 ---
 
